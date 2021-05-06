@@ -132,6 +132,8 @@ export class OrderBookService {
             makerFeeAssetData: ordersFilterParams.makerFeeAssetData,
             takerFeeAssetData: ordersFilterParams.takerFeeAssetData,
         };
+        const sortBy = ordersFilterParams.sortBy ? ordersFilterParams.sortBy : 'hash';
+        const sortDir = ordersFilterParams.sortDir ? ordersFilterParams.sortDir.toUpperCase() : 'ASC';
         const filterObject = _.pickBy(filterObjectWithValuesIfExist, _.identity.bind(_));
         const [signedOrderCount, signedOrderEntities] = await Promise.all([
             this._connection.manager.count(SignedOrderEntity, {
@@ -141,7 +143,7 @@ export class OrderBookService {
                 where: filterObject,
                 ...paginationUtils.paginateDBFilters(page, perPage),
                 order: {
-                    hash: 'ASC',
+                    [sortBy]: sortDir,
                 },
             }),
         ]);

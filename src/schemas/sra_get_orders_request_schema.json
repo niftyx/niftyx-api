@@ -69,6 +69,12 @@
         },
         "unfillable": {
             "enum": ["true", "false"]
+        },
+        "sortDir": {
+            "enum": ["asc", "dsc"]
+        },
+        "sortBy": {
+            "enum": ["makerAssetAmount", "takerAssetAmount"]
         }
     }
 }

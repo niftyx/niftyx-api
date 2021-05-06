@@ -667,5 +667,7 @@ export interface SRAGetOrdersRequestOpts {
     traderAddress?: string;
     feeRecipientAddress?: string;
     isUnfillable?: boolean; // default false
+    sortDir?: string;
+    sortBy?: string;
 }
 // tslint:disable-line:max-file-line-count
