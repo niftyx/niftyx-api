@@ -14,6 +14,8 @@ export class InitialTables1604516429083 implements MigrationInterface {
         await queryRunner.query(`CREATE INDEX "maker_address_idx" ON "signed_orders" ("maker_address") `);
         await queryRunner.query(`CREATE INDEX "taker_asset_data_idx" ON "signed_orders" ("taker_asset_data") `);
         await queryRunner.query(`CREATE INDEX "maker_asset_data_idx" ON "signed_orders" ("maker_asset_data") `);
+        await queryRunner.query(`CREATE INDEX "maker_asset_amount_idx" ON "signed_orders" ("maker_asset_amount") `);
+        await queryRunner.query(`CREATE INDEX "taker_asset_amount_idx" ON "signed_orders" ("taker_asset_amount") `);
         await queryRunner.query(
             `CREATE INDEX "maker_taker_asset_data_idx" ON "signed_orders" ("maker_asset_data", "taker_asset_data") `,
         );
@@ -21,6 +23,8 @@ export class InitialTables1604516429083 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.query(`DROP INDEX "maker_taker_asset_data_idx"`);
+        await queryRunner.query(`DROP INDEX "taker_asset_amount_idx"`);
+        await queryRunner.query(`DROP INDEX "maker_asset_amount_idx"`);
         await queryRunner.query(`DROP INDEX "maker_asset_data_idx"`);
         await queryRunner.query(`DROP INDEX "taker_asset_data_idx"`);
         await queryRunner.query(`DROP INDEX "maker_address_idx"`);

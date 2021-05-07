@@ -46,6 +46,7 @@ export class PersistentSignedOrderEntity extends SignedOrderEntity {
     @Column({ name: 'taker_fee', type: 'varchar' })
     public takerFee?: string;
 
+    @Index()
     @Column({
         name: 'maker_asset_amount',
         type: 'decimal',
@@ -55,6 +56,7 @@ export class PersistentSignedOrderEntity extends SignedOrderEntity {
     })
     public makerAssetAmount?: string;
 
+    @Index()
     @Column({
         name: 'taker_asset_amount',
         type: 'decimal',
