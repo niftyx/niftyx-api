@@ -71,7 +71,7 @@
             "enum": ["true", "false"]
         },
         "sortDir": {
-            "enum": ["asc", "dsc"]
+            "enum": ["asc", "desc"]
         },
         "sortBy": {
             "enum": ["makerAssetAmount", "takerAssetAmount"]
