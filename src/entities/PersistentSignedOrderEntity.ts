@@ -2,6 +2,7 @@ import { OrderEventEndState } from '@0x/mesh-graphql-client';
 import { Column, Entity, Index, PrimaryColumn } from 'typeorm';
 
 import { SignedOrderEntity } from './SignedOrderEntity';
+import { BigNumberTransformer } from './transformers';
 
 // Adds a field `orderState` to SignedOrderEntity
 // Persists after cancellation, expiration, etc
@@ -45,10 +46,22 @@ export class PersistentSignedOrderEntity extends SignedOrderEntity {
     @Column({ name: 'taker_fee', type: 'varchar' })
     public takerFee?: string;
 
-    @Column({ name: 'maker_asset_amount', type: 'varchar' })
+    @Column({
+        name: 'maker_asset_amount',
+        type: 'decimal',
+        precision: 80,
+        scale: 0,
+        transformer: BigNumberTransformer,
+    })
     public makerAssetAmount?: string;
 
-    @Column({ name: 'taker_asset_amount', type: 'varchar' })
+    @Column({
+        name: 'taker_asset_amount',
+        type: 'decimal',
+        precision: 80,
+        scale: 0,
+        transformer: BigNumberTransformer,
+    })
     public takerAssetAmount?: string;
 
     @Column({ name: 'salt', type: 'varchar' })

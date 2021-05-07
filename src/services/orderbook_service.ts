@@ -175,7 +175,7 @@ export class OrderBookService {
                     where: filterObject,
                     ...paginationUtils.paginateDBFilters(page, perPage),
                     order: {
-                        hash: 'ASC',
+                        [sortBy]: sortDir,
                     },
                 }),
             ]);

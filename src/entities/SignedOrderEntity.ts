@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { BigNumberTransformer } from './transformers';
 
 @Entity({ name: 'signed_orders' })
 export class SignedOrderEntity {
@@ -35,10 +36,22 @@ export class SignedOrderEntity {
     @Column({ name: 'taker_fee', type: 'varchar' })
     public takerFee?: string;
 
-    @Column({ name: 'maker_asset_amount', type: 'varchar' })
+    @Column({
+        name: 'maker_asset_amount',
+        type: 'decimal',
+        precision: 80,
+        scale: 0,
+        transformer: BigNumberTransformer,
+    })
     public makerAssetAmount?: string;
 
-    @Column({ name: 'taker_asset_amount', type: 'varchar' })
+    @Column({
+        name: 'taker_asset_amount',
+        type: 'decimal',
+        precision: 80,
+        scale: 0,
+        transformer: BigNumberTransformer,
+    })
     public takerAssetAmount?: string;
 
     @Column({ name: 'salt', type: 'varchar' })
